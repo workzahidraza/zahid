@@ -1,4 +1,5 @@
 import Posts from "../../post/pages/Posts";
+import BottomNav from "./BottomNav";
 import NavBar from "./NavBar";
 import "remixicon/fonts/remixicon.css";
 const HomePage = () => {
@@ -7,6 +8,7 @@ const HomePage = () => {
       <main className="h-screen  bg-black">
         <NavBar />
         <Posts />
+        <BottomNav/>
       </main>
     </>
   );
