@@ -1,32 +1,38 @@
 const userModel = require("../models/auth.model");
 const bcrytp = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+
 async function Register(req, res) {
   try {
-    const { username, useremail, password } = req.body;
-    const userPresent = await userModel.findOne({
-      $or: [{ username }, { useremail }],
-    });
-    if (userPresent) {
-      return res.status(409).json({
-        message: "user is already present",
-      });
-    }
-
-    if (!username || !useremail || !password) {
+    const { userName, userEmail, password, bio, profile_pic } = req.body;
+    if (!userName || !userEmail || !password) {
       return res.status(400).json({
         message: "All fields are required",
       });
     }
+    const userPresent = await userModel.findOne({
+      $or: [{ userName: userName }, { userEmail: userEmail }],
+    });
+    if (userPresent) {
+      return res.status(409).json({
+        message:
+          userPresent.userName === userName
+            ? "username already present"
+            : "user email already present",
+      });
+    }
+
     const hash = await bcrytp.hash(password, 10);
     const user = await userModel.create({
-      username,
-      useremail,
+      userName: userName,
+      userEmail: userEmail,
       password: hash,
+      bio: bio,
+      profile_pic: profile_pic,
     });
 
     const token = jwt.sign(
-      { id: user.id, username: user.username },
+      { id: user.id, userName: user.userName },
       process.env.JWT_SECRET,
       { expiresIn: "1d" },
     );
@@ -35,8 +41,8 @@ async function Register(req, res) {
       message: "User Registered Successfully",
       user: {
         id: user.id,
-        username: user.username,
-        useremail: user.useremail,
+        userName: user.userName,
+        userEmail: user.userEmail,
       },
     });
   } catch (error) {
@@ -47,6 +53,53 @@ async function Register(req, res) {
   }
 }
 
+async function Login(req, res) {
+  const { userName, userEmail, password } = req.body;
+  if (!userName || !password) {
+    return res.status(400).json({
+      message: "all fileds are required ",
+    });
+  }
+  const isUserRegistered = await userModel.findOne({
+    $or: [{ userName }, { userEmail }],
+  });
+  if (!isUserRegistered) {
+    return res.status(400).json({
+      message: "you are not registered ! registered before loggin",
+    });
+  }
+  const checkPassword = await bcrytp.compare(
+    password,
+    isUserRegistered.password,
+  );
+  if (!checkPassword) {
+    return res.status(401).json({
+      message: "incorrect password",
+    });
+  }
+
+  // const user = await userModel.findById(isUserRegistered.id);
+
+  const token = jwt.sign(
+    {
+      _id: isUserRegistered.id,
+      userName: isUserRegistered.userName,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: "1d" },
+  );
+  res.cookie("token", token);
+
+  res.status(200).json({
+    message: "user logged in succussfully",
+    data: {
+      userName: isUserRegistered.userName,
+      userEmail: isUserRegistered.userEmail,
+    },
+  });
+}
+
 module.exports = {
   Register,
+  Login,
 };
