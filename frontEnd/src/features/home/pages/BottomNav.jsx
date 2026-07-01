@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const BottomNav = () => {
   const [cretePost, setCreatepost] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
     <>
       <div
@@ -39,7 +42,7 @@ const BottomNav = () => {
         <i
           class="ri-home-line"
           onClick={() => {
-            <Link to="/home"></Link>;
+            navigate("/home");
           }}
         ></i>
         <i
@@ -47,6 +50,7 @@ const BottomNav = () => {
           onClick={() => {
             if (cretePost == false) {
               setCreatepost(true);
+              // navigate("/createPost")
             } else {
               setCreatepost(false);
             }
@@ -55,6 +59,13 @@ const BottomNav = () => {
 
         <div className="profilePic h-10 w-10 rounded-full overflow-hidden">
           <img
+            onClick={(e) => {
+              if (location.pathname == "/profile") {
+                navigate("/home");
+              } else {
+                navigate("/profile");
+              }
+            }}
             className="w-full h-full object-cover object-center"
             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""

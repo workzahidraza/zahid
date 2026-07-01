@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "remixicon/fonts/remixicon.css";
+import { useNavigate, useLocation } from "react-router-dom";
 const NavBar = () => {
   const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
     <>
       <div className="navbar bg-[#8B2635] flex justify-between items-center px-2.5 py-2.5">
@@ -15,9 +18,23 @@ const NavBar = () => {
             }
           }}
         ></i>
-        <h1 className="text-xl font-semibold">CollegeGram</h1>
+        <h1
+          className="text-xl font-semibold"
+          onClick={() => {
+            navigate("/home");
+          }}
+        >
+          CollegeGram
+        </h1>
         <div className="profilePic h-9 w-9 rounded-full overflow-hidden">
           <img
+            onClick={() => {
+              if (location.pathname == "/home") {
+                navigate("/profile");
+              } else {
+                navigate("/home");
+              }
+            }}
             className="w-full h-full object-cover object-center"
             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
@@ -33,19 +50,31 @@ const NavBar = () => {
           </div> */}
           <div className="profilePic h-9 w-9 rounded-full overflow-hidden">
             <img
+              onClick={() => {
+                if (location.pathname == "/profile") {
+                  navigate("/home");
+                }
+              }}
               className="w-full h-full object-cover object-center"
               src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt=""
             />
           </div>
-          <h2 className="text-xl font-bold uppercase">Profile</h2>
+          <h2
+            className="text-xl font-bold uppercase"
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            Profile
+          </h2>
         </div>
         <div className="searchDiv w-full bg-[#8B2635]  text-xl font-bold flex justify-start gap-5 items-center px-1.5 py-2.5 border">
-          <i class="ri-search-line text-xl font-bold"></i>
+          <i className="ri-search-line text-xl font-bold"></i>
           <h2 className="text-xl font-bold uppercase">search</h2>
         </div>
         <div className="createPostDiv  w-full bg-[#8B2635]  text-xl font-bold flex justify-start gap-5 items-center px-1.5 py-2.5 border">
-          <i class="ri-add-large-line"></i>
+          <i className="ri-add-large-line"></i>
           <h2 className="text-xl font-bold uppercase">upload photo</h2>
         </div>
       </div>

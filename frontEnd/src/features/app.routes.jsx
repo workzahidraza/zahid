@@ -3,6 +3,7 @@ import Login from "../features/auth/pages/Login";
 import HomePage from "../features/home/pages/HomePage";
 import Register from "./auth/pages/Register";
 import CreatePost from "../features/post/pages/CreatePost";
+import ProfileDetails from "./home/pages/ProfileDetails";
 export const routes = createBrowserRouter([
   {
     path: "/register",
@@ -19,5 +20,9 @@ export const routes = createBrowserRouter([
   {
     path: "/createPost",
     element: <CreatePost />,
+  },
+  {
+    path: "/profile",
+    element: <ProfileDetails />,
   },
 ]);
