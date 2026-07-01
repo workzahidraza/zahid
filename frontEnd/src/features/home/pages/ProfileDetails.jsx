@@ -57,7 +57,11 @@ const ProfileDetails = () => {
               </div>
             </div>
           </div>
-          <div className="posts h-full bg-black"></div>
+          <div className="posts h-[60%] bg-black flex flex-col justify-start items-center gap-1 py-2">
+            {/* <div className="box h-1/2 w-[90vw] bg-amber-400 rounded-2xl"></div>
+            <div className="box h-1/2 w-[90vw] bg-amber-400 rounded-2xl"></div> */}
+            
+          </div>
         </div>
         <BottomNav />
       </main>
