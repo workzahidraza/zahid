@@ -5,7 +5,20 @@ const api = axios.create({
   withCredentials: true,
 });
 
-async function register(use) {
+async function Register() {
+  try {
+    const response = await api.post("/register", {
+      userName,
+      userEmail,
+      password,
+    });
+    return response.data;
+  } catch (error) {
+    message: error.message;
+  }
+}
+
+async function Login() {
   try {
     const response = await api.post("/register", {
       userName,
