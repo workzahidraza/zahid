@@ -5,7 +5,7 @@ import "remixicon/fonts/remixicon.css";
 const HomePage = () => {
   return (
     <>
-      <main className="h-screen  bg-black">
+      <main className="h-screen  bg-[#FAF9F5]">
         <NavBar />
         <Posts />
         <BottomNav/>
