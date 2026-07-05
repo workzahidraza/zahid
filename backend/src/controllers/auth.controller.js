@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 async function Register(req, res) {
   try {
     const { userName, userEmail, password, bio, profile_pic } = req.body;
+
     if (!userName || !userEmail || !password) {
       return res.status(400).json({
         message: "All fields are required",
@@ -13,8 +14,10 @@ async function Register(req, res) {
     const userPresent = await userModel.findOne({
       $or: [{ userName: userName }, { userEmail: userEmail }],
     });
+
     if (userPresent) {
       return res.status(409).json({
+        success: false,
         message:
           userPresent.userName === userName
             ? "username already present"
@@ -23,6 +26,7 @@ async function Register(req, res) {
     }
 
     const hash = await bcrytp.hash(password, 10);
+
     const user = await userModel.create({
       userName: userName,
       userEmail: userEmail,
@@ -38,6 +42,7 @@ async function Register(req, res) {
     );
     res.cookie("token", token);
     res.status(201).json({
+      success: true,
       message: "User Registered Successfully",
       user: {
         id: user.id,
