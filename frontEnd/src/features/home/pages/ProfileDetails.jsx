@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "./NavBar";
 import BottomNav from "./BottomNav";
+import { useAuth } from "../../auth/hooks/useAuth";
+import axios from "axios";
 
 const ProfileDetails = () => {
   return (
@@ -33,13 +35,11 @@ const ProfileDetails = () => {
               />
             </div>
 
-           
             <div className="text-center">
               <h1 className="text-2xl font-bold text-white">Zahid Shaikh</h1>
               <p className="text-gray-400">@zahidshaikh</p>
             </div>
 
-           
             <div className="w-full flex justify-evenly">
               <div className="flex flex-col items-center">
                 <h2 className="text-white text-xl font-bold">120</h2>
@@ -60,7 +60,6 @@ const ProfileDetails = () => {
           <div className="posts h-[60%] bg-black flex flex-col justify-start items-center gap-1 py-2">
             {/* <div className="box h-1/2 w-[90vw] bg-amber-400 rounded-2xl"></div>
             <div className="box h-1/2 w-[90vw] bg-amber-400 rounded-2xl"></div> */}
-            
           </div>
         </div>
         <BottomNav />

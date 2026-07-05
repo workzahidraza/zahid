@@ -48,6 +48,7 @@ async function Register(req, res) {
         id: user.id,
         userName: user.userName,
         userEmail: user.userEmail,
+        profile_pic: user.profile_pic,
       },
     });
   } catch (error) {

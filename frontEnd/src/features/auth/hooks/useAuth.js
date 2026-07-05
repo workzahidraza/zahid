@@ -12,6 +12,7 @@ export const useAuth = () => {
     if (response.success) {
       setUsername(response.user.userName);
     }
+    
     setUsername(response.user);
 
     setLoading(false);

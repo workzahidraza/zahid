@@ -12,6 +12,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await handleRegister(username, useremail, password);
+    let profile_pic = response.user.profile_pic;
     setMessage(response.message);
     setIsSuccess(response.success);
 
@@ -27,9 +28,7 @@ const Register = () => {
         {message && (
           <p
             className={`mt-2 text-center font-medium ${
-              isSuccess
-                ? "text-green-400"
-                : "text-red-300 "
+              isSuccess ? "text-green-400" : "text-red-300 "
             }`}
           >
             {message}
