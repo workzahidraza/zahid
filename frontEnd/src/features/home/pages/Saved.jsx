@@ -35,11 +35,11 @@ const Saved = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF9F5] pb-20">
+    <main className="min-h-screen bg-[#FAF9F5] pb-20 md:pl-64">
       <NavBar />
 
-      <div className="px-1 py-2">
-        <h2 className="text-sm font-medium text-[#2A2A28] px-3 mb-3">
+      <div className="px-1 py-2 md:max-w-[470px] md:mx-auto md:py-8">
+        <h2 className="text-sm font-medium text-[#2A2A28] px-3 mb-3 md:text-lg md:px-0">
           Saved posts
         </h2>
 

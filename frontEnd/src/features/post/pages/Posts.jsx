@@ -59,7 +59,7 @@ const Posts = ({ refreshKey = 0, onPostDeleted }) => {
   }
 
   return (
-    <main className="h-auto bg-[#FAF9F5] px-1 py-1 pb-24 flex flex-col gap-3">
+    <main className="h-auto bg-[#FAF9F5] px-1 py-1 pb-24 flex flex-col gap-3 md:max-w-[470px] md:mx-auto md:pb-12 md:pt-6 md:px-0">
       {posts.map((post) => (
         <SinglePost
           key={post.id}

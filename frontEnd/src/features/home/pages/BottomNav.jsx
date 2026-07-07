@@ -18,7 +18,7 @@ const BottomNav = ({ onPostCreated }) => {
         onPostCreated={onPostCreated}
       />
 
-      <div className="bottom fixed bottom-0 left-0 bg-[#FAF9F5] border-t border-[#2A2A28]/10 w-full flex items-center justify-between px-6 py-2.5">
+      <div className="bottom fixed bottom-0 left-0 bg-[#FAF9F5] border-t border-[#2A2A28]/10 w-full flex items-center justify-between px-6 py-2.5 md:hidden">
         <i
           className="ri-home-line text-2xl text-[#2A2A28] cursor-pointer"
           onClick={() => navigate("/home")}

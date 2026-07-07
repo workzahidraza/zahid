@@ -76,3 +76,19 @@ export async function getUserProfile(userName) {
     };
   }
 }
+
+export async function updateProfile(formData) {
+  try {
+    const response = await api.put("/auth/profile", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return {
+      success: false,
+      message: error.response?.data?.message || error.message,
+    };
+  }
+}

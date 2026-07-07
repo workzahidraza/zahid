@@ -38,11 +38,11 @@ const Search = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF9F5] pb-20">
+    <main className="min-h-screen bg-[#FAF9F5] pb-20 md:pl-64">
       <NavBar />
 
-      <div className="px-4 py-4">
-        <h2 className="text-sm font-medium text-[#2A2A28] mb-3">
+      <div className="px-4 py-4 md:max-w-[600px] md:mx-auto md:py-8">
+        <h2 className="text-sm font-medium text-[#2A2A28] mb-3 md:text-lg">
           Search users
         </h2>
         <form onSubmit={handleSearch} className="flex gap-2 mb-4">

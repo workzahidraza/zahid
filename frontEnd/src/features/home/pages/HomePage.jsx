@@ -12,7 +12,7 @@ const HomePage = () => {
   };
 
   return (
-    <main className="h-screen bg-[#FAF9F5]">
+    <main className="h-screen bg-[#FAF9F5] md:pl-64">
       <NavBar />
       <Posts refreshKey={refreshKey} />
       <BottomNav onPostCreated={handlePostCreated} />

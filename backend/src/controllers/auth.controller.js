@@ -261,6 +261,47 @@ async function getUserProfile(req, res) {
   }
 }
 
+async function updateProfile(req, res) {
+  try {
+    const { bio } = req.body;
+    const updateData = {};
+    if (bio !== undefined) {
+      updateData.bio = bio;
+    }
+    if (req.file) {
+      updateData.profile_pic = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+    }
+
+    const updatedUser = await userModel.findByIdAndUpdate(
+      req.user.id,
+      { $set: updateData },
+      { new: true }
+    ).select("-password");
+
+    if (!updatedUser) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Profile updated successfully",
+      user: {
+        id: updatedUser.id,
+        userName: updatedUser.userName,
+        userEmail: updatedUser.userEmail,
+        profile_pic: updatedUser.profile_pic,
+        bio: updatedUser.bio,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+}
+
 module.exports = {
   Register,
   Login,
@@ -268,4 +309,5 @@ module.exports = {
   getMe,
   searchUsers,
   getUserProfile,
+  updateProfile,
 };

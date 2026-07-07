@@ -8,7 +8,7 @@ const CreatePostPage = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="min-h-screen bg-[#FAF9F5]">
+    <main className="min-h-screen bg-[#FAF9F5] md:pl-64">
       <NavBar />
       <CreatePost
         isOpen={true}

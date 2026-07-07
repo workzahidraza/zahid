@@ -19,11 +19,11 @@ const Settings = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF9F5] pb-20">
+    <main className="min-h-screen bg-[#FAF9F5] pb-20 md:pl-64">
       <NavBar />
 
-      <div className="px-4 py-6">
-        <h2 className="text-sm font-medium text-[#2A2A28] mb-4">Settings</h2>
+      <div className="px-4 py-6 md:max-w-[600px] md:mx-auto md:py-8">
+        <h2 className="text-sm font-medium text-[#2A2A28] mb-4 md:text-lg">Settings</h2>
 
         <div className="bg-[#FAF9F5] border border-[#2A2A28]/10 rounded-2xl overflow-hidden">
           <div className="px-4 py-4 border-b border-[#2A2A28]/10">

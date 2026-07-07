@@ -45,7 +45,7 @@ const SinglePost = ({ post, onLikeUpdate, onSaveUpdate, onDelete }) => {
   };
 
   return (
-    <div className="post max-h-1/2 bg-[#FAF9F5] text-[#2A2A28] border border-[#2A2A28]/10 flex flex-col justify-between overflow-hidden rounded-xl">
+    <div className="post max-h-1/2 md:max-h-none bg-[#FAF9F5] text-[#2A2A28] border border-[#2A2A28]/10 flex flex-col justify-between overflow-hidden rounded-xl md:shadow-sm">
       <div className="topPostdiv bg-transparent flex justify-between items-center px-3 py-2.5 gap-3">
         <div className="flex items-center gap-3">
           <div className="profilePic h-9 w-9 rounded-full overflow-hidden">
@@ -71,7 +71,7 @@ const SinglePost = ({ post, onLikeUpdate, onSaveUpdate, onDelete }) => {
         )}
       </div>
 
-      <div className="centerPostdiv h-full overflow-hidden">
+      <div className="centerPostdiv h-full md:h-auto md:max-h-[470px] overflow-hidden">
         <img
           className="w-full h-full object-cover object-center bg-no-repeat"
           src={post.photo_url}
