@@ -1,0 +1,23 @@
+import { Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
+
+const GuestRoute = ({ children }) => {
+  const { user, authLoading } = useContext(AuthContext);
+
+  if (authLoading) {
+    return (
+      <div className="h-screen w-full bg-[#F3EFE4] flex items-center justify-center">
+        <p className="text-sm text-[#8C8479]">Loading...</p>
+      </div>
+    );
+  }
+
+  if (user) {
+    return <Navigate to="/home" replace />;
+  }
+
+  return children;
+};
+
+export default GuestRoute;

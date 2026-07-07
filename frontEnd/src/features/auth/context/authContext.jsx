@@ -1,17 +1,29 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { getMe } from "../services/api.auth";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [username, setUsername] = useState(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
 
-  return(
+  useEffect(() => {
+    async function loadSession() {
+      const response = await getMe();
+      if (response.success) {
+        setUser(response.user);
+      }
+      setAuthLoading(false);
+    }
+    loadSession();
+  }, []);
 
-   <AuthContext.Provider value={{username,setUsername,loading,setLoading}}>
-    {children}
-   </AuthContext.Provider>
-
-    
-  )
+  return (
+    <AuthContext.Provider
+      value={{ user, setUser, loading, setLoading, authLoading }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
