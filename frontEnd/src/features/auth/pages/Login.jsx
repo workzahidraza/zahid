@@ -50,10 +50,14 @@
 // export default Login;
 
 //update
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+  const { username, setUsername, loading, setLoading } = useAuth;
   return (
     <main className="h-screen w-full bg-[#F3EFE4] flex flex-col items-center justify-center px-4">
       <div className="w-full max-w-70 text-center mb-6">
